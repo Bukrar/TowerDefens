@@ -23,10 +23,4 @@ public class EnemyMovement : MonoBehaviour
         }
         print("End");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
