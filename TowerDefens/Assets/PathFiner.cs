@@ -5,11 +5,19 @@ using UnityEngine;
 
 public class PathFiner : MonoBehaviour
 {
+    [SerializeField] Waypoint startWayPoint, endWayPoint;
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
     // Start is called before the first frame update
     void Start()
     {
         LoadBlock();
+        ColorStartAndEnd();
+    }
+
+    private void ColorStartAndEnd()
+    {
+        startWayPoint.SetColor(Color.black);
+        endWayPoint.SetColor(Color.red);
     }
 
     private void LoadBlock()
@@ -22,16 +30,16 @@ public class PathFiner : MonoBehaviour
             {
                 print("LAP");
             }
-            else {
+            else
+            {
                 grid.Add(waypoint.GetGridPos(), waypoint);
             }
         }
-        print(grid.Count);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

@@ -18,9 +18,10 @@ public class EnemyMovement : MonoBehaviour
         foreach (Waypoint waypoint in path)
         {
             transform.position = waypoint.transform.position;
-            print("Vist : " + waypoint);
+         //   print("Vist : " + waypoint);
             yield return new WaitForSeconds(1f);
         }
         print("End");
     }
+
 }
