@@ -7,11 +7,32 @@ public class PathFiner : MonoBehaviour
 {
     [SerializeField] Waypoint startWayPoint, endWayPoint;
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
-    // Start is called before the first frame update
+    Vector2Int[] directions = {
+        Vector2Int.up,
+        Vector2Int.right,
+        Vector2Int.down,
+        Vector2Int.left
+    };
+
     void Start()
     {
         LoadBlock();
         ColorStartAndEnd();
+        ExploreNeighbours();
+    }
+
+    private void ExploreNeighbours()
+    {
+        foreach (var direction in directions)
+        {
+            Vector2Int exp = startWayPoint.GetGridPos() + direction;
+            try
+            {
+                grid[exp].SetColor(Color.blue);
+            }
+            catch { }
+
+        }
     }
 
     private void ColorStartAndEnd()
