@@ -21,7 +21,6 @@ public class PathFiner : MonoBehaviour
         LoadBlock();
         ColorStartAndEnd();
         PathFind();
-        //ExploreNeighbours();
     }
 
     private void PathFind()
@@ -30,11 +29,14 @@ public class PathFiner : MonoBehaviour
         while (queue.Count > 0 && isRunning)
         {
             var searchCenter = queue.Dequeue();
+            print("Searching from" + searchCenter);
             if (searchCenter == endWayPoint)
             {
+                print("stop!!!!");
                 isRunning = false;
             }
             ExploreNeighbours(searchCenter);
+            searchCenter.isExlored = true;
         }
     }
 
@@ -47,8 +49,12 @@ public class PathFiner : MonoBehaviour
             try
             {
                 Waypoint neighbour = grid[neighbourCoordinates];
-                neighbour.SetColor(Color.blue);
-                queue.Enqueue(neighbour);
+                if (!neighbour.isExlored)
+                {
+                    neighbour.SetColor(Color.blue);
+                    queue.Enqueue(neighbour);
+                    print("Queueing" + neighbour);
+                }
             }
             catch { }
         }
