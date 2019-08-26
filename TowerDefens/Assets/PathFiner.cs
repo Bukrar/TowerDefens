@@ -6,7 +6,9 @@ using UnityEngine;
 public class PathFiner : MonoBehaviour
 {
     [SerializeField] Waypoint startWayPoint, endWayPoint;
+    Queue<Waypoint> queue = new Queue<Waypoint>();
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
+    bool isRunning = true;
     Vector2Int[] directions = {
         Vector2Int.up,
         Vector2Int.right,
@@ -18,20 +20,37 @@ public class PathFiner : MonoBehaviour
     {
         LoadBlock();
         ColorStartAndEnd();
-        ExploreNeighbours();
+        PathFind();
+        //ExploreNeighbours();
     }
 
-    private void ExploreNeighbours()
+    private void PathFind()
     {
+        queue.Enqueue(startWayPoint);
+        while (queue.Count > 0 && isRunning)
+        {
+            var searchCenter = queue.Dequeue();
+            if (searchCenter == endWayPoint)
+            {
+                isRunning = false;
+            }
+            ExploreNeighbours(searchCenter);
+        }
+    }
+
+    private void ExploreNeighbours(Waypoint from)
+    {
+        if (!isRunning) { return; }
         foreach (var direction in directions)
         {
-            Vector2Int exp = startWayPoint.GetGridPos() + direction;
+            Vector2Int neighbourCoordinates = from.GetGridPos() + direction;
             try
             {
-                grid[exp].SetColor(Color.blue);
+                Waypoint neighbour = grid[neighbourCoordinates];
+                neighbour.SetColor(Color.blue);
+                queue.Enqueue(neighbour);
             }
             catch { }
-
         }
     }
 
