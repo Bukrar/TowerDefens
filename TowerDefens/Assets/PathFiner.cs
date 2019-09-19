@@ -49,7 +49,11 @@ public class PathFiner : MonoBehaviour
             try
             {
                 Waypoint neighbour = grid[neighbourCoordinates];
-                if (!neighbour.isExlored)
+                if (neighbour.isExlored || queue.Contains(neighbour))
+                {
+
+                }
+                else
                 {
                     neighbour.SetColor(Color.blue);
                     queue.Enqueue(neighbour);
