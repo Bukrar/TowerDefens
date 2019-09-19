@@ -9,6 +9,8 @@ public class PathFiner : MonoBehaviour
     Queue<Waypoint> queue = new Queue<Waypoint>();
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
     bool isRunning = true;
+    Waypoint searchCenter;
+
     Vector2Int[] directions = {
         Vector2Int.up,
         Vector2Int.right,
@@ -28,24 +30,28 @@ public class PathFiner : MonoBehaviour
         queue.Enqueue(startWayPoint);
         while (queue.Count > 0 && isRunning)
         {
-            var searchCenter = queue.Dequeue();
-            print("Searching from" + searchCenter);
-            if (searchCenter == endWayPoint)
-            {
-                print("stop!!!!");
-                isRunning = false;
-            }
-            ExploreNeighbours(searchCenter);
+            searchCenter = queue.Dequeue();
+            HaltIfEndFound();
+            ExploreNeighbours();
             searchCenter.isExlored = true;
         }
     }
 
-    private void ExploreNeighbours(Waypoint from)
+    private void HaltIfEndFound()
+    {
+        if (searchCenter == endWayPoint)
+        {
+            print("stop!!!!");
+            isRunning = false;
+        }
+    }
+
+    private void ExploreNeighbours()
     {
         if (!isRunning) { return; }
         foreach (var direction in directions)
         {
-            Vector2Int neighbourCoordinates = from.GetGridPos() + direction;
+            Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;
             try
             {
                 Waypoint neighbour = grid[neighbourCoordinates];
@@ -57,7 +63,7 @@ public class PathFiner : MonoBehaviour
                 {
                     neighbour.SetColor(Color.blue);
                     queue.Enqueue(neighbour);
-                    print("Queueing" + neighbour);
+                    neighbour.exploredFrom = searchCenter;
                 }
             }
             catch { }
