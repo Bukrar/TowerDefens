@@ -11,6 +11,8 @@ public class PathFiner : MonoBehaviour
     bool isRunning = true;
     Waypoint searchCenter;
 
+    List<Waypoint> path = new List<Waypoint>();
+
     Vector2Int[] directions = {
         Vector2Int.up,
         Vector2Int.right,
@@ -18,14 +20,31 @@ public class PathFiner : MonoBehaviour
         Vector2Int.left
     };
 
-    void Start()
+    public List<Waypoint> GetPath()
     {
         LoadBlock();
         ColorStartAndEnd();
-        PathFind();
+        BreadthFirstSearch();
+        CreatePath();
+        return path;
     }
 
-    private void PathFind()
+    private void CreatePath()
+    {
+        path.Add(endWayPoint);
+
+        Waypoint previous = endWayPoint.exploredFrom;
+        while (previous != startWayPoint)
+        {
+            path.Add(previous);
+            previous = previous.exploredFrom;
+        }
+
+        path.Add(startWayPoint);
+        path.Reverse();
+    }
+
+    private void BreadthFirstSearch()
     {
         queue.Enqueue(startWayPoint);
         while (queue.Count > 0 && isRunning)
@@ -41,7 +60,6 @@ public class PathFiner : MonoBehaviour
     {
         if (searchCenter == endWayPoint)
         {
-            print("stop!!!!");
             isRunning = false;
         }
     }
@@ -52,7 +70,7 @@ public class PathFiner : MonoBehaviour
         foreach (var direction in directions)
         {
             Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;
-            try
+            if(grid.ContainsKey(neighbourCoordinates))
             {
                 Waypoint neighbour = grid[neighbourCoordinates];
                 if (neighbour.isExlored || queue.Contains(neighbour))
@@ -61,12 +79,11 @@ public class PathFiner : MonoBehaviour
                 }
                 else
                 {
-                    neighbour.SetColor(Color.blue);
+                   // neighbour.SetColor(Color.blue);
                     queue.Enqueue(neighbour);
                     neighbour.exploredFrom = searchCenter;
                 }
             }
-            catch { }
         }
     }
 
@@ -91,11 +108,5 @@ public class PathFiner : MonoBehaviour
                 grid.Add(waypoint.GetGridPos(), waypoint);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
