@@ -47,6 +47,92 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPan: {fileID: 9166859383164253193}
   targetEnemy: {fileID: 0}
+  attactRange: 30
+  projectileParticle: {fileID: 0}
+--- !u!1001 &6960599308648835943
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 9166859383164253193}
+    m_Modifications:
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769394, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769395, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: m_Name
+      value: Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769396, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769396, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2279011052886769396, guid: aa7181e3ece788a42887050b79f0b3cd,
+        type: 3}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aa7181e3ece788a42887050b79f0b3cd, type: 3}
 --- !u!1001 &9167543556734816928
 PrefabInstance:
   m_ObjectHideFlags: 0
