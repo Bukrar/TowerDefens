@@ -22,11 +22,19 @@ public class PathFiner : MonoBehaviour
 
     public List<Waypoint> GetPath()
     {
+        if (path.Count == 0)
+        {
+            CalculatePath();
+        }
+        return path;
+    }
+
+    private void CalculatePath()
+    {
         LoadBlock();
         ColorStartAndEnd();
         BreadthFirstSearch();
         CreatePath();
-        return path;
     }
 
     private void CreatePath()
@@ -70,7 +78,7 @@ public class PathFiner : MonoBehaviour
         foreach (var direction in directions)
         {
             Vector2Int neighbourCoordinates = searchCenter.GetGridPos() + direction;
-            if(grid.ContainsKey(neighbourCoordinates))
+            if (grid.ContainsKey(neighbourCoordinates))
             {
                 Waypoint neighbour = grid[neighbourCoordinates];
                 if (neighbour.isExlored || queue.Contains(neighbour))
@@ -79,7 +87,7 @@ public class PathFiner : MonoBehaviour
                 }
                 else
                 {
-                   // neighbour.SetColor(Color.blue);
+                    // neighbour.SetColor(Color.blue);
                     queue.Enqueue(neighbour);
                     neighbour.exploredFrom = searchCenter;
                 }
