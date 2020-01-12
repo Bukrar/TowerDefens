@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    [SerializeField] Color exploredColor;
     public bool isExlored = false;
     public Waypoint exploredFrom;
+    public bool isPlaceble = true;
 
     Vector2Int gridPos;
     const int gridSize = 10;
@@ -24,9 +24,14 @@ public class Waypoint : MonoBehaviour
             );
     }
 
-    public void SetColor(Color color)
+    private void OnMouseOver()
     {
-        MeshRenderer topMMeshRenderer = transform.Find("Top").GetComponent<MeshRenderer>();
-        topMMeshRenderer.material.color = color;
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(isPlaceble)
+            {
+                print(gameObject.name);
+            }   
+        }
     }
 }
