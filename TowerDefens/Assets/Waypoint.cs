@@ -7,6 +7,7 @@ public class Waypoint : MonoBehaviour
     public bool isExlored = false;
     public Waypoint exploredFrom;
     public bool isPlaceble = true;
+    [SerializeField] Tower towerPrefab;
 
     Vector2Int gridPos;
     const int gridSize = 10;
@@ -19,19 +20,20 @@ public class Waypoint : MonoBehaviour
     public Vector2Int GetGridPos()
     {
         return new Vector2Int(
-               Mathf.RoundToInt(transform.position.x / gridSize) ,
-               Mathf.RoundToInt(transform.position.z / gridSize) 
+               Mathf.RoundToInt(transform.position.x / gridSize),
+               Mathf.RoundToInt(transform.position.z / gridSize)
             );
     }
 
     private void OnMouseOver()
     {
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            if(isPlaceble)
+            if (isPlaceble)
             {
-                print(gameObject.name);
-            }   
+                Instantiate(towerPrefab, transform.position, Quaternion.identity);
+                isPlaceble = false;
+            }
         }
     }
 }
