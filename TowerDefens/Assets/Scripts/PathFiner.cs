@@ -43,8 +43,8 @@ public class PathFiner : MonoBehaviour
         Waypoint previous = endWayPoint.exploredFrom;
         while (previous != startWayPoint)
         {
-            previous = previous.exploredFrom;
             SetAsPath(previous);
+            previous = previous.exploredFrom;
         }
 
         SetAsPath(startWayPoint);
