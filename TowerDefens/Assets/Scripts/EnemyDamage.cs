@@ -21,6 +21,7 @@ public class EnemyDamage : MonoBehaviour
         {
             var fcx = Instantiate(deathParticleSystem, transform.position, Quaternion.identity);
             fcx.Play();
+            Destroy(fcx.gameObject, fcx.main.duration);
             Destroy(this.gameObject);
         }
     }

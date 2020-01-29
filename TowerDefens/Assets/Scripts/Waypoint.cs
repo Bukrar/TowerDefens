@@ -34,7 +34,7 @@ public class Waypoint : MonoBehaviour
             }
             else
             {
-                print("Limit 5");
+                print("NOT Placeble");
             }
         }
     }
