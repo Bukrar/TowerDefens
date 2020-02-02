@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int health = 10;
-    [SerializeField] int damage= 1;
+    [SerializeField] int damage = 1;
     [SerializeField] Text text;
+    [SerializeField] AudioClip audioClip;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        GetComponent<AudioSource>().PlayOneShot(audioClip);
         health = health - damage;
         text.text = health.ToString();
     }
